@@ -159,13 +159,9 @@
 
     attached: function() {
       if (!this.ctor) {
-        const childTemplate = this.queryEffectiveChildren('template');
-
-        if (childTemplate) {
-          const items = this.$['item-list'];
-          this.templatize(childTemplate);
-          items.templatize(childTemplate);
-        }
+        const tmpl = this.queryEffectiveChildren('template') || this.$.defaultTmpl;
+        const items = this.$['item-list'];
+        items.appendChild(tmpl);
       }
     },
 

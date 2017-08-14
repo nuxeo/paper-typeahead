@@ -52,7 +52,7 @@ Custom property | Description | Default
   <template>
     <style>
       :host {
-        @apply(--paper-font-common-base);
+        @apply --paper-font-common-base;
         --paper-input-container-label: {
           z-index: -1;
         }
@@ -64,16 +64,16 @@ Custom property | Description | Default
         display: block;
       }
       input::-webkit-input-placeholder {
-        color: var(--paper-input-container-color, --secondary-text-color);
+        color: var(--paper-input-container-color, var(--secondary-text-color));
       }
       input:-moz-placeholder {
-        color: var(--paper-input-container-color, --secondary-text-color);
+        color: var(--paper-input-container-color, var(--secondary-text-color));
       }
       input::-moz-placeholder {
-        color: var(--paper-input-container-color, --secondary-text-color);
+        color: var(--paper-input-container-color, var(--secondary-text-color));
       }
       input:-ms-input-placeholder {
-        color: var(--paper-input-container-color, --secondary-text-color);
+        color: var(--paper-input-container-color, var(--secondary-text-color));
       }
       paper-material {
         border-radius: 0 0 2px 2px;
@@ -83,26 +83,26 @@ Custom property | Description | Default
         overflow: auto;
         -webkit-overflow-scrolling: touch;
         max-height: var(--paper-typeahead-results-layer-max-height, auto);
-        @apply(--paper-typeahead-results);
+        @apply --paper-typeahead-results;
       }
       .iron-selected:not(paper-input-container) {
-        background: var(--paper-typeahead-result-selected-background, --paper-indigo-50);
+        background: var(--paper-typeahead-result-selected-background, var(--paper-indigo-50));
       }
       paper-item[pressed] {
-        @apply(--paper-typeahead-result-pressed);
+        @apply --paper-typeahead-result-pressed;
       }
       paper-item {
         cursor: pointer;
         position: relative;
         background: #fff;
-        @apply(--paper-typeahead-result);
+        @apply --paper-typeahead-result;
         --paper-item-min-height: var(--paper-typeahead-result-min-height, 30px);
         --paper-item-selected-weight: var(--paper-typeahead-selected-weight, normal);
         --paper-item-selected: var(--paper-typeahead-result-selected);
         --paper-item-focused: var(--paper-typeahead-result-focused);
       }
       paper-item:not(:last-of-type) {
-        border-bottom: solid 1px var(--paper-typeahead-divider-color, --divider-color);
+        border-bottom: solid 1px var(--paper-typeahead-divider-color, var(--divider-color));
       }
       paper-item:focus:before {
         display: none;
@@ -118,22 +118,14 @@ Custom property | Description | Default
         auto-validate$="[[autoValidate]]"
         disabled$="[[disabled]]"
         invalid="[[invalid]]">
-      <label hidden$="[[!label]]" on-tap="_onLabelTap">[[label]]</label>
-      <input
-          is="iron-input"
-          id="input"
+      <label slot="label" hidden$="[[!label]]" on-tap="_onLabelTap">[[label]]</label>
+      <iron-input slot="input"
           aria-labelledby$="[[_ariaLabelledBy]]"
           aria-describedby$="[[_ariaDescribedBy]]"
-          disabled$="[[disabled]]"
           bind-value="{{value}}"
-          value="{{typedValue::input}}"
-          invalid="{{invalid}}"
           prevent-invalid-input="[[preventInvalidInput]]"
           allowed-pattern="[[allowedPattern]]"
           validator="[[validator]]"
-          type$="[[type]]"
-          pattern$="[[pattern]]"
-          required$="[[required]]"
           autocomplete$="[[autocomplete]]"
           autofocus$="[[autofocus]]"
           inputmode$="[[inputmode]]"
@@ -149,7 +141,15 @@ Custom property | Description | Default
           autocapitalize$="[[autocapitalize]]"
           autocorrect$="on"
           on-change="_onChange">
-        <paper-material
+          <input id="input"
+            disabled$="[[disabled]]"
+            value="{{typedValue::input}}"
+            invalid="{{invalid}}"
+            required$="[[required]]"
+            type$="[[type]]"
+            pattern$="[[pattern]]">
+        </iron-input>
+        <paper-material slot="add-on"
           hidden$="[[_hideResults]]"
           elevation="[[elevation]]"
           on-mousedown="_mouseDownItems"
@@ -159,20 +159,22 @@ Custom property | Description | Default
             id="selector"
             selected="{{selected}}"
             items="[[selectorItems]]">
-            <template
-              is="dom-repeat"
+            <dom-repeat
               id="item-list"
               sort="[[sortFn]]"
               items="[[filteredItems]]"
               on-dom-change="_updateItems">
-              <paper-item on-mouseenter="_mouseenterItem" class="result-item selectable" tabindex="-1">
-                <span>[[getDataDisplayValue(item, dataKey)]]</span>
-              </paper-item>
-            </template>
+            </dom-repeat>
           </iron-selector>
         </paper-material>
-        <paper-input-error tabindex="-1">[[errorMessage]]</paper-input-error>
+        <paper-input-error slot="add-on" tabindex="-1">[[errorMessage]]</paper-input-error>
     </paper-input-container>
+    
+    <template id="defaultTmpl">
+      <paper-item on-mouseenter="_mouseenterItem" class="result-item selectable" tabindex="-1">
+        <span>[[getDataDisplayValue(item, dataKey)]]</span>
+      </paper-item>
+    </template>
   </template>
 </dom-module>
 <script src="paper-typeahead.js"></script>
