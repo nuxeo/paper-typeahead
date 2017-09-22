@@ -55,13 +55,33 @@ Custom property | Description | Default
         @apply --paper-font-common-base;
         --paper-input-container-label: {
           z-index: -1;
-        }
+        };
 
         --paper-input-container-underline: {
           z-index: -1;
-        }
+        };
+
+        --paper-input-container-shared-input-style: {
+          position: relative; /* to make a stacking context */
+          outline: none;
+          box-shadow: none;
+          padding: 0;
+          width: 100%;
+          max-width: 100%;
+          background: transparent;
+          border: none;
+          color: var(--paper-input-container-input-color, var(--primary-text-color));
+          -webkit-appearance: none;
+          text-align: inherit;
+          vertical-align: bottom;
+
+          @apply --paper-font-subhead;
+        };
 
         display: block;
+      }
+      input {
+        @apply --paper-input-container-shared-input-style;
       }
       input::-webkit-input-placeholder {
         color: var(--paper-input-container-color, var(--secondary-text-color));
