@@ -145,30 +145,30 @@ Custom property | Description | Default
           bind-value="{{value}}"
           prevent-invalid-input="[[preventInvalidInput]]"
           allowed-pattern="[[allowedPattern]]"
+          invalid="{{invalid}}"
           validator="[[validator]]"
-          autocomplete$="[[autocomplete]]"
-          autofocus$="[[autofocus]]"
-          inputmode$="[[inputmode]]"
-          minlength$="[[minlength]]"
-          maxlength$="[[maxlength]]"
-          min$="[[min]]"
-          max$="[[max]]"
-          step$="[[step]]"
-          name$="[[name]]"
-          placeholder$="[[placeholder]]"
-          readonly$="[[readonly]]"
-          size$="[[size]]"
-          autocapitalize$="[[autocapitalize]]"
-          autocorrect$="on"
           on-change="_onChange">
-          <input id="input"
-            disabled$="[[disabled]]"
-            value="{{typedValue::input}}"
-            invalid="{{invalid}}"
-            required$="[[required]]"
-            type$="[[type]]"
-            pattern$="[[pattern]]">
-        </iron-input>
+        <input id="input"
+             autocomplete$="[[autocomplete]]"
+             autocapitalize$="[[autocapitalize]]"
+             autocorrect$="on"
+             autofocus$="[[autofocus]]"
+             disabled$="[[disabled]]"
+             value="{{typedValue::input}}"
+             inputmode$="[[inputmode]]"
+             minlength$="[[minlength]]"
+             maxlength$="[[maxlength]]"
+             min$="[[min]]"
+             max$="[[max]]"
+             required$="[[required]]"
+             step$="[[step]]"
+             name$="[[name]]"
+             placeholder$="[[placeholder]]"
+             readonly$="[[readonly]]"
+             size$="[[size]]"
+             type$="[[type]]"
+             pattern$="[[pattern]]">
+      </iron-input>
         <paper-material slot="add-on"
           hidden$="[[_hideResults]]"
           elevation="[[elevation]]"
@@ -189,7 +189,7 @@ Custom property | Description | Default
         </paper-material>
         <paper-input-error slot="add-on" tabindex="-1">[[errorMessage]]</paper-input-error>
     </paper-input-container>
-    
+
     <template id="defaultTmpl">
       <paper-item on-mouseenter="_mouseenterItem" class="result-item selectable" tabindex="-1">
         <span>[[getDataDisplayValue(item, dataKey)]]</span>
