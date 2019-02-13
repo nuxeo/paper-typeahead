@@ -1,5 +1,6 @@
 {
   "name": "@nuxeo/paper-typeahead",
+  "repository": "nuxeo/paper-typeahead.git",
   "scripts": {
     "test": "jscs *.js"
   },
