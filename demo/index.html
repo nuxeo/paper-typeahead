@@ -1,8 +1,8 @@
 <html>
   <head>
-    <link rel="import" href="../../polymer/polymer.html">
-    <link rel="import" href="../../iron-ajax/iron-ajax.html">
-    <link rel="import" href="../paper-typeahead.html">
+    <script type="module" src="../../../@polymer/polymer/polymer-legacy.js"></script>
+    <script type="module" src="../../../@polymer/iron-ajax/iron-ajax.js"></script>
+    <script type="module" src="../paper-typeahead.js"></script>
     <style>
       h1 {
         font-family: Roboto, Helvetica Neue, Helvetica;
@@ -79,21 +79,24 @@
       </template>
     </dom-bind>
 
-    <script>
-      document.querySelector('#data-fetch').fetchFn = function(typedValue) {
-        return Promise.resolve().then(() => ['red', 'green', 'blue', 'teal']);
-      }
+    <script type="module">
+import '@polymer/polymer/polymer-legacy.js';
+import '@polymer/iron-ajax/iron-ajax.js';
+import '../paper-typeahead.js';
+document.querySelector('#data-fetch').fetchFn = function(typedValue) {
+  return Promise.resolve().then(() => ['red', 'green', 'blue', 'teal']);
+}
 
-      document.body.querySelector('#object-list').data = [
-        {name: {title: 'red'}},
-        {name: {title: 'green'}},
-        {name: {title: 'blue'}},
-        {name: {title: 'brown'}},
-        {name: {title: 'pink'}},
-        {name: {title: 'orange'}},
-        {name: {title: 'teal'}},
-        {name: {title: 'purple'}},
-      ]
-    </script>
+document.body.querySelector('#object-list').data = [
+  {name: {title: 'red'}},
+  {name: {title: 'green'}},
+  {name: {title: 'blue'}},
+  {name: {title: 'brown'}},
+  {name: {title: 'pink'}},
+  {name: {title: 'orange'}},
+  {name: {title: 'teal'}},
+  {name: {title: 'purple'}},
+]
+</script>
   </body>
 </html>
