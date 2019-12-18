@@ -441,9 +441,8 @@ Polymer({
     if (targetResult === undefined) {
       this.fire('customvalentered', {target: this.typedValue});
     } else {
-      this.value = this._getDataItemValue(
-        targetResult, this.dataKey);
-      this.fire('selected', {target: this.value, targetResult: targetResult});
+      this.typedValue = this.value = targetResult;
+      this.fire('selected', {target: this.value});
       this.closeResults();
     }
   },
