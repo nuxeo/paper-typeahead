@@ -10,7 +10,7 @@
     "@polymer/iron-ajax": "^3.0.0",
     "@polymer/iron-component-page": "^4.0.0"
   },
-  "version": "0.6.0-SNAPSHOT",
+  "version": "0.6.0-nx.0",
   "resolutions": {
     "inherits": "2.0.3",
     "samsam": "1.1.3",
